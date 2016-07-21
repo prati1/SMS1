@@ -11,10 +11,16 @@
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	  <style>
+	  	  .dropdown-content{
+    overflow: visible !important;
+}
 
-  
+  	 .container{
+		 width:100%;
+	 }
+	   
 	  .container .row {
-   margin-left: 10.75rem;
+   margin-left: -6.75rem;
   margin-right: -6.75rem;
 }
 
@@ -34,96 +40,58 @@
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
 
-<nav class="teal" role="navigation">
-  <div id="nav" name="nav" class="nav-wrapper">
+ <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a class="dropdown-button2" href="#!" data-activates="dropdown2" data-hover="hover" data-alignment="left">Class</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Age</a></li>
+  <li class="divider"></li>
+  <li><a href="#!">Advanced Options</a></li>
+</ul>
+
+<!-- Dropdown Structure -->
+<ul id="dropdown2" class="dropdown-content">
+  <li><a href="adminviewbyclass.php?standard_name='1'">one</a></li>
+  <li class="divider"></li>
+  <li><a href="adminviewbyclass.php?standard_name='2'">two</a></li>
+  <li class="divider"></li>
+  <li><a href="adminviewbyclass.php?standard_name='3'">three</a></li>
+</ul>
+	  
+	  <nav class="teal" role="navigation">
+  <div id="nav" name="nav" class="nav-wrapper fixed">
     <a href="#!" class="brand-logo">ABC</a>
     <ul class="right hide-on-med-and-down">
       <!--
-	  <li><a class="perm_identity"><i class="material-icons left">perm_identity</i><?php echo $login_session; ?> </a></li>
-	  -->
-	  <li><a class="settings"><i class="material-icons left">settings</i>Settings</a></li>
-	  <li><a href="logout1.php" target="_top">Logout</a></li>
+	  
+	 <li><a class="perm_identity"><i class="material-icons left">perm_identity</i> echo php session</a></li>
+		-->
+		<!-- Dropdown Trigger -->
+      <li class="bold active"><a class="dropdown-button" href="#!" data-activates="dropdown1" data-beloworigin="true">Search By<i class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a href="newreg123.php">Student Registration</a></li>
+	 <li  class="bold"><a href="administration.php">Home</a></li>
+	  <li class="bold"><a href="logout1.php" target="_top">Logout</a></li>
       
     </ul>
   </div> <!-- navbar -->
 </nav>
 
 
-
- <header>
-         <!-- <div class="nav-wrapper"><a class="page-title">SideNav dfjdkf fadifd kdfaifj jkdfji</a></div> -->
-      <div class="container"><a href="#" data-activates="nav-mobile" class="button-collapse top-nav waves-effect waves-light circle hide-on-large-only"><i class="material-icons">menu</i></a></div>
-      <ul id="nav-mobile" class="side-nav fixed">
-        <li class="logo"><a id="logo-container" class="teal" class="brand-logo">ABC</a></li>
-        <li class="bold"><a class="waves-effect waves-teal">Search BY:</a></li>
-		<li class="no-padding">
-		  <ul class="collapsible collapsible-accordion">
-            <li class="bold active"><a class="collapsible-header  waves-effect waves-teal">Class</a>
-              <div class="collapsible-body">
-                 <ul>
-                                 <li><a href="viewbyclass.php?standard_name='1'">One</a></li>
-								<li><a href="adminviewbyclass.php?standard_name='2'">Two</a></li>
-								<li><a href="viewbyclass.php?standard_name='3'">Three</a></li>
-								<li><a href="viewbyclass.php?standard_name='4'">Four</a></li>
-								<li><a href="viewbyclass.php?standard_name='5'">Five</a></li>
-								<li><a href="viewbyclass.php?standard_name='6'">Six</a></li>
-								<li><a href="viewbyclass.php?standard_name='7'">Seven</a></li>
-								<li><a href="viewbyclass.php?standard_name='8'">Eight</a></li>
-								<li><a href="viewbyclass.php?standard_name='9'">Nine</a></li>
-								<li><a href="viewbyclass.php?standard_name='10'">Ten</a></li>
-                                </ul>
-              </div>
-            </li>
-			<li class="bold"><a class="collapsible-header  waves-effect waves-teal">Age</a>
-              <div class="collapsible-body">
-                 <ul>
-                                 <li><a href="viewbyage.php?standard_name='5'">Five</a></li>
-								<li><a href="viewbyage.php?standard_name='6'">Six</a></li>
-								<li><a href="adminviewbyage.php?Age='7'">Seven</a></li>
-								<li><a href="viewbyage.php?standard_name='8'">Eight</a></li>
-								<li><a href="viewbyage.php?standard_name='9'">Nine</a></li>
-								<li><a href="viewbyage.php?standard_name='10'">Ten</a></li>
-								<li><a href="viewbyage.php?standard_name='11'">Eleven</a></li>
-								<li><a href="viewbyage.php?standard_name='12'">Twelve</a></li>
-								<li><a href="viewbyage.php?standard_name='13'">Thirteen</a></li>
-								<li><a href="viewbyage.php?standard_name='21'">Twenty One</a></li>
-                                </ul>
-              </div>
-            </li>
-          
-           
-          </ul>
-        </li>
-        
-      </ul>
-	  
-</header>
-
 <main><div class="section" id="index-banner">
-<!--
- <div class="container">
-    <div class="row">
-      <div class="col s12 m9">
-        <h1 class="header center-on-small-only">Jubilant High School</h1>
-      </div>
-	  
 
-    </div>
-</div>
--->	
 
- <div class="container">
-  <div class="row">
-       <div class="col s12 m9 90">
+
+ 
+       <div class="col s12 m9 70">
       <!--  Material Design -->
       <div id="materialdesign" class="section scrollspy">
-        <h2 class="header">Administration Section</h2>
+        <h2 class="header">Student Information</h2>
        <?php
 /* 
 	VIEWBYCLASS.PHP
 	Displays all data from 'administration' table
 */
-	 include('config.php');
+	 
 
 	 
 	 $standard=$_GET['standard_name'];
@@ -167,13 +135,24 @@
 <p><a href="newreg.php">Add a new record</a></p>
        
 	</div>
-  </div>
 </div>
-</div>
+
+
 	
   
   
-
+<script>
+	$('.dropdown-button2').dropdown({
+      inDuration: 300,
+      outDuration: 225,
+      constrain_width: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      gutter: ($('.dropdown-content').width()*0.88), // Spacing from edge
+      belowOrigin: false, // Displays dropdown below the button
+      alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    }
+  );
+	</script>
 
 
 </main>
