@@ -1,6 +1,12 @@
 <?php
    include("config.php");
    session_start();
+   
+
+   
+
+
+   
    $error = NULL;
   
    
@@ -9,6 +15,22 @@
       
       $myusername = mysqli_real_escape_string($db,$_POST['username']);
       $mypassword = mysqli_real_escape_string($db,$_POST['password']); 
+	  
+	    if (isset($_POST['remember-me']) && $_POST['remember-me'] == 'on') {
+    /*
+     * Set Cookie from here for one hour
+     * */
+    setcookie("username", $myusername);
+    setcookie("password", $mypassword);  /* expire in 1 hour */
+  } else {
+    /**
+     * Following code will unset the cookie
+     * it set cookie 1 sec back to current Unix time
+     * so that it will invalid
+     * */
+    //setcookie("username", $username, time()-1);
+    //setcookie("password", $password, time()-1);
+  }
 
  
       $sql = "SELECT * FROM login WHERE username = '$myusername' and password = '$mypassword'";
@@ -16,24 +38,44 @@
 	  $result = mysqli_query($db,$sql);
       $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
       //$active = $row['active'];
-      
+      $role=$row['role'];
       $count = mysqli_num_rows($result);
       
       // If result matched $myusername and $mypassword, table row must be 1 row
-		
+	  
+	        if($count==1) {
+		//session_register("myusername");
+        // $_SESSION['CurrentUser'] = $myusername;
+		 $_SESSION['CurrentUser'] = $role;
+		 $_POST['role'] = $role;
+         echo $_SESSION["CurrentUser"];
+         //header('Location:welcome.php');
+		 
+		 if($role=='administrator')
+         header("location: administration.php");
+         	
+			elseif($role=='examiner')
+				header("location: exam.php");
+				
+				elseif($role=='account')
+					header("location: account.php");
+					
+					else
+						echo "Please define your role.";
+	
+        
+      }
+		/*
       if($count==1) {
 //session_register("myusername");
          $_SESSION['login_user'] = $myusername;
 		 	
-		/*
-		if(isset($_GET['logout']))
-		{
-			session_unset();
-			session_destroy();
-		}
-         */
-        header("location: try4.php");
+	
+         
+        header("location: administration.php");
       }
+	  
+	  */
 	  else {
          $error = "Your Login Name or Password is invalid";
       }
@@ -66,9 +108,17 @@
 			
             font-family:Arial, Helvetica, sans-serif;
             font-size:14px;
-			
+
 			
          }
+		 
+html { 
+  background: url(background2.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
          
      #label {
             font-weight:bold;
@@ -76,50 +126,29 @@
             font-size:14px;
          }
          
-      #.box {
-        
-			
-         }
+   
+		 
+		 #bg {
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+	
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
       </style>
       
    </head>
    
-   <body background="loginback.jpg">
+   <body>
+ 
 	<div id="header">
 
-WELCOME TO ABC FAMILY
+JUBILANT HIGH SCHOOL
 	
 </div>
-
-<!--
-	
-	<h3 style="color:blue;"><p align=" right"></p></h3><br><br><br><br><br><br>
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-				
-            <div style = "margin:30px">
-               
-               <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" placeholder = "userName" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" placeholder = "Password" class = "box" /><br/><br />
-				  <label>Login As : </label><select><option value="null">------</option>
-  <option value="admin">Administrator</option>
-  <option value="exam">Examiner</option>
-  <option value="account">Accountant</option></select><br><br><input type = "submit" value = " Log In "/><br />
-                  
-               </form>
-               
-             
-					
-            </div>
-				
-         </div>
-			
-      </div><br><br><br>
-	<h6><p align= "center";text-font-family="arial">made by<br>adfsdgfg<br>iehrhehr<br></p></h6>
-	
--->
+<div class="row">
 
 <div class="box">
 <div id="login-page" class="row" style = "width:350px " align = "left">
@@ -149,11 +178,8 @@ WELCOME TO ABC FAMILY
 	        </div>
 	        
  <div class="row">
-	<div>
 
-	Login As
-	
-</div>
+<!--
                <div class="input-field col s12">
                      <input id="admin" type="radio" name="loginas" value="admin" checked>
                      <label for="admin">Administrator</label>
@@ -164,14 +190,15 @@ WELCOME TO ABC FAMILY
                   <p>
                      <input id="account" type="radio" name="loginas" value="account" checked>                  
                      <label for="account">Account</label>
-	
-			<div class="row">         
+	-->
+			        
 	          <div class="input-field col s12 m12 l12  login-text">
 	              <input type="checkbox" id="remember-me" />
 	              <label for="remember-me">Remember me</label>
 	          </div>
-	        </div>
-		
+			  </div>
+	        
+		<div class="row">
 	<input type = "submit" class="btn waves-effect waves-light col s12" value = " Login "/>
 		
 	              
@@ -182,15 +209,16 @@ WELCOME TO ABC FAMILY
 					
             </div>
 			</div>
-	         
+	        
 	    </div>
-	  </div>
+	 
 	  
 	   <div class="input-field col s6 m6 l6">
              <p class="margin right-align medium-small"><a href="forgot-password.html">Forgot password?</a></p>
 	          </div>
 
 
-</div>			  
+</div>
+		  
    </body>
 </html>
